@@ -1,9 +1,10 @@
+import users from './routes/users'
+import posts from './routes/posts'
+import profile from './routes/profile'
+
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
-const posts = require('./routes/posts');
-const profile = require('./routes/profile');
-const users = require('./routes/users');
 
 const DB_URL="mongodb://root:root123@ds033170.mlab.com:33170/learningmern"
 app.get("/",(req,res) => res.send("hello world new") );
