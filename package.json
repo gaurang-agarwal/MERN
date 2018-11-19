@@ -4,8 +4,8 @@
   "description": "Learning Mern",
   "main": "server.js",
   "scripts": {
-    "start" : "node server.js",
-    "server": "nodemon server.js"
+    "start": "node server.js",
+    "server": "nodemon --exec babel-node server.js"
   },
   "repository": {
     "type": "git",
@@ -35,6 +35,8 @@
     "validator": "^10.9.0"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
     "nodemon": "^1.18.6"
   }
 }
