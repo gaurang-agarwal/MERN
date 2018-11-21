@@ -5,9 +5,13 @@ import profile from './routes/profile'
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 
 const DB_URL="mongodb://root:root123@ds033170.mlab.com:33170/learningmern"
 app.get("/",(req,res) => res.send("hello world new") );
+
+app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.json());
 
 mongoose.connect(DB_URL).then(data =>console.log("Mongo DB Conected",data)).catch(err => console.log(err));
 
