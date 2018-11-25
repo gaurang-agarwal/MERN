@@ -1,13 +1,12 @@
-import users from './routes/users'
-import posts from './routes/posts'
-import profile from './routes/profile'
+import users from './routes/users';
+import posts from './routes/posts';
+import profile from './routes/profile';
+import {DB_URL} from './config';
 
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-
-const DB_URL="mongodb://root:root123@ds033170.mlab.com:33170/learningmern"
 app.get("/",(req,res) => res.send("hello world new") );
 
 app.use(bodyParser.urlencoded({extended:false}));
