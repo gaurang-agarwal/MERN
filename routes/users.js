@@ -41,4 +41,21 @@ router.post("/register", (req, res) => {
     .catch(error => console.log(error));
 });
 
+router.post("/login", (req, res) => {
+  User.findOne({ email: req.body.email }).then( user => {
+  if (!user) return res.status(404).json({ msg: "Email ID doesnot exists" });
+  console.log(user.email,user.password);
+
+  const password= user.password;
+  bcrypt.compare(req.body.password,password).then(isMatched => {
+      if(isMatched){
+        res.status(200).json({msg: 'Login Successful'});
+        return;
+        }
+        res.status(400).json({msg: 'Invalid Password'});
+
+  });
+});
+});
+
 export default router;
