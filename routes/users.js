@@ -1,11 +1,12 @@
 import User from "../models/User";
-import { SECRET } from "../config";
+import { SECRET } from "../config/keys";
 
 const express = require("express");
 const gravatar = require("gravatar");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+ const passport = require('passport');
 
 router.get("/test", (req, res) => res.json({ msg: "test users" }));
 
@@ -65,6 +66,11 @@ router.post("/login", (req, res) => {
       res.status(400).json({ msg: "Invalid Password" });
     });
   });
+});
+
+router.post("/current", passport.authenticate('jwt',{session:false}), (req, res) => {
+res.json(req.user);
+
 });
 
 export default router;

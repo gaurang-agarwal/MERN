@@ -2,15 +2,23 @@ import users from './routes/users';
 import posts from './routes/posts';
 import profile from './routes/profile';
 import {DB_URL} from './config/keys';
+import PassportConfig from './config/passport';
 
+const passport = require('passport');
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 app.get("/",(req,res) => res.send("hello world new") );
 
+app.use(passport.initialize());
+
+PassportConfig(passport);
+
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
+
+
 
 mongoose.connect(DB_URL).then(data =>console.log("Mongo DB Conected",data)).catch(err => console.log(err));
 
