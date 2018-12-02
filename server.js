@@ -1,7 +1,7 @@
 import users from './routes/users';
 import posts from './routes/posts';
 import profile from './routes/profile';
-import {DB_URL} from './config';
+import {DB_URL} from './config/keys';
 
 const express = require('express');
 const app = express();
