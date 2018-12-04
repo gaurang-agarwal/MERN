@@ -1,5 +1,6 @@
 import User from "../models/User";
 import { SECRET } from "../config/keys";
+import { validateRegistrationInput } from "../validations/registration";
 
 const express = require("express");
 const gravatar = require("gravatar");
@@ -11,6 +12,12 @@ const jwt = require("jsonwebtoken");
 router.get("/test", (req, res) => res.json({ msg: "test users" }));
 
 router.post("/register", (req, res) => {
+
+  const {errors,isValid} = validateRegistrationInput(req.body);
+  if(!isValid){
+    return res.status(400).json({errors})
+  }
+
   User.findOne({ email: req.body.email })
     .then(user => {
       if (user)
