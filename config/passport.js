@@ -11,9 +11,7 @@ opts.secretOrKey = SECRET;
 
 export default (passport) => {
     passport.use(new JwtStrategy(opts, (jwt_payload, done) => {
-        User.findOne({id: jwt_payload.sub},  (err, user) => {
-            
-            console.log(jwt_payload,new Date().getTime());
+        User.findById(jwt_payload.id,  (err, user) => {
             if (user) {
                 return done(null, user);
             }
